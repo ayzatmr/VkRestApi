@@ -24,32 +24,32 @@ namespace RestApiTest.Common
             return queryStringParameters;
         }
 
-        public static string DoGET(Uri URL, NameValueCollection QueryStringParameters = null,
-            NameValueCollection RequestHeaders = null)
+        public static string DoGet(Uri URL, NameValueCollection queryStringParameters = null,
+            NameValueCollection requestHeaders = null)
         {
-            string ResponseText = String.Empty;
+            string responseText = String.Empty;
             using (WebClient client = new WebClient())
             {
                 try
                 {
-                    if (RequestHeaders != null)
+                    if (requestHeaders != null)
                     {
-                        if (RequestHeaders.Count > 0)
+                        if (requestHeaders.Count > 0)
                         {
-                            foreach (string header in RequestHeaders.AllKeys)
-                                client.Headers.Add(header, RequestHeaders[header]);
+                            foreach (string header in requestHeaders.AllKeys)
+                                client.Headers.Add(header, requestHeaders[header]);
                         }
                     }
-                    if (QueryStringParameters != null)
+                    if (queryStringParameters != null)
                     {
-                        if (QueryStringParameters.Count > 0)
+                        if (queryStringParameters.Count > 0)
                         {
-                            foreach (string parm in QueryStringParameters.AllKeys)
-                                client.QueryString.Add(parm, QueryStringParameters[parm]);
+                            foreach (string parm in queryStringParameters.AllKeys)
+                                client.QueryString.Add(parm, queryStringParameters[parm]);
                         }
                     }
-                    byte[] ResponseBytes = client.DownloadData(URL);
-                    ResponseText = Encoding.UTF8.GetString(ResponseBytes);
+                    byte[] responseBytes = client.DownloadData(URL);
+                    responseText = Encoding.UTF8.GetString(responseBytes);
                 }
                 catch (WebException exception)
                 {
@@ -61,13 +61,13 @@ namespace RestApiTest.Common
                         {
                             using (var reader = new StreamReader(responseStream))
                             {
-                                ResponseText = reader.ReadToEnd();
+                                responseText = reader.ReadToEnd();
                             }
                         }
                     }
                 }
             }
-            return ResponseText;
+            return responseText;
         }
     }
 }

@@ -102,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="git.ignore" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

@@ -16,7 +16,7 @@ namespace RestApiTest.AuthTests
             Uri url = new Uri(ServerConstants.BaseActiveServerUri + ServerConstants.SignUp);
             NameValueCollection requestParams = Helper.SetParams("Иван", "Иванов", "", "123123Aa", "2");
 
-            string response = Helper.DoGET(url, requestParams);
+            string response = Helper.DoGet(url, requestParams);
             ErrorResponse objectResponse = JsonConvert.DeserializeObject<ErrorResponse>(response);
             Assert.AreEqual(objectResponse.error.error_code, ResponseErrorCodes.NO_PARAM);
             Assert.AreEqual(objectResponse.error.error_msg,
@@ -29,7 +29,7 @@ namespace RestApiTest.AuthTests
             Uri url = new Uri(ServerConstants.BaseActiveServerUri + ServerConstants.SignUp);
             NameValueCollection requestParams = Helper.SetParams("Ivan", "Ivanov", "79510626018", "123123Aa", "2");
 
-            string response = Helper.DoGET(url, requestParams);
+            string response = Helper.DoGet(url, requestParams);
             SuccessResponse objectResponse = JsonConvert.DeserializeObject<SuccessResponse>(response);
             if (objectResponse.response == null)
             {
